@@ -1,0 +1,18 @@
+# Python
+venv/
+__pycache__/
+.pytest_cache/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Материалы преподавателя (методичка и пример решения)
+PZ1/main.tex
+PZ1/main.py
+PZ1/architecture.png
