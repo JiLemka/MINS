@@ -14,6 +14,7 @@
 \usepackage{titlesec}
 \usepackage{fancyhdr}
 \usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{booktabs}
 
 \geometry{a4paper, left=2.5cm, right=1.5cm, top=2cm, bottom=2cm}
@@ -133,7 +134,8 @@ API проектируется как единая точка входа для 
 \centering
 \caption{Слои и модули приложения}
 \small
-\begin{tabular}{|p{3.0cm}|p{4.6cm}|p{8.0cm}|}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|L{3.3cm}|L{5.0cm}|L{7.3cm}|}
 \hline
 \textbf{Слой (каталог)} & \textbf{Модуль} & \textbf{Ответственность} \\
 \hline
@@ -175,7 +177,7 @@ API \newline \texttt{api/} & \texttt{routes.py} & HTTP-маршруты: при�
 \begin{table}[H]
 \centering
 \caption{Архитектурные риски прототипа}
-\begin{tabular}{|p{4cm}|p{5.3cm}|p{6cm}|}
+\begin{tabular}{|L{4cm}|L{5.3cm}|L{6cm}|}
 \hline
 \textbf{Риск} & \textbf{Проявление} & \textbf{Мера (реализовано / вариант решения)} \\
 \hline
@@ -349,15 +351,20 @@ FastAPI автоматически формирует OpenAPI-специфика
 \centering
 \caption{API-контракт}
 \small
-\begin{tabular}{|p{3.3cm}|p{1.2cm}|p{2.6cm}|p{3.3cm}|p{1.3cm}|p{2.3cm}|}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|L{3.1cm}|L{1.6cm}|L{2.6cm}|L{3.7cm}|L{1.6cm}|L{2.2cm}|}
 \hline
-\textbf{Endpoint} & \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Success} & \textbf{Ошибки} \\
+\textbf{Endpoint} & \textbf{Method} & \textbf{Input} & \textbf{Output} & \textbf{Success} & \textbf{Возможные ошибки} \\
 \hline
 /health & GET & --- & HealthResponse & 200 & 500 \\
+\hline
 /model-info & GET & --- & ModelInfoResponse & 200 & 500 \\
+\hline
 /predict & POST & body: FarmRequest & PredictionResponse & 200 & 400, 422, 503, 500 \\
-/predictions/\{request\_id\} & GET & path: request\_id & PredictionResponse & 200 & 404, 500 \\
-/predictions & GET & query: limit, risk\_level & list[PredictionResponse] & 200 & 422, 500 \\
+\hline
+/predictions/ \newline \{request\_id\} & GET & path: request\_id & PredictionResponse & 200 & 404, 500 \\
+\hline
+/predictions & GET & query: limit, risk\_level & список PredictionResponse & 200 & 422, 500 \\
 \hline
 \end{tabular}
 \end{table}
