@@ -341,16 +341,8 @@ FastAPI автоматически формирует OpenAPI-специфика
 9  & GET /predictions?risk\_level=high & 200 & 200 & пройден \\
 10 & GET /predictions?limit=-5 & 422 & 422 & пройден \\
 \hline
-\multicolumn{5}{|l|}{\textit{Дополнительные кейсы}} \\
-\hline
-11 & GET /predictions?risk\_level=extreme & 422 & 422 & пройден \\
-12 & POST /predict без поля \texttt{debt} & 422 & 422 & пройден \\
-13 & POST /predict, модель не готова (\texttt{model\_ready=False}) & 503 & 503 & пройден \\
-\hline
 \end{tabular}
 \end{table}
-
-Для корректного запроса из методички (просрочка 45 дней, 1 дефолт, долг 6,5 млн) получен \texttt{risk\_score = 0.9}, \texttt{risk\_level = high}, рекомендация «Высокий риск. Требуется ручное рассмотрение», что совпадает с ручным расчётом: $0.1 + 0.3 + 0.3 + 0.2 = 0.9$.
 
 % ============================================================
 \section{Анализ API как контракта}
